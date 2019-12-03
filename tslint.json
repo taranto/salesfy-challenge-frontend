@@ -1,0 +1,54 @@
+{
+    "defaultSeverity": "warning",
+    "enable": true,
+    "extends": [
+        "tslint:recommended",
+        "tslint-eslint-rules",
+        "tslint-config-prettier",
+        "tslint-react"
+    ],
+    "jsRules": {},
+    "rules": {
+        "indent": [true, "tabs"],
+        "whitespace": [false, "check-branch",
+            "check-decl",
+            "check-operator",
+            "check-module",
+            "check-separator",
+            "check-rest-spread",
+            "check-type",
+            "check-typecast",
+            "check-type-operator",
+            "check-preblock"],
+		"import-spacing": true,
+		"no-var-keyword": true,
+        "no-return-await": true,
+        "no-empty": false,
+        "eofline": true,
+        "max-line-length": [true, 200],
+        "max-file-line-count": [true, 500],
+        "max-classes-per-file": false,
+        "no-consecutive-blank-lines": true,
+        "no-irregular-whitespace": true,
+        "no-trailing-whitespace": [true, "ignore-comments"],
+        "variable-name": [false, "allow-leading-underscore"],
+        "no-var-requires": false,
+        "ordered-imports": [ false ],
+        "object-literal-sort-keys": false,
+		"member-ordering": [true, {"order": "fields-first"}],
+        "no-debugger": false,
+        "jsx-no-string-ref": false,
+        "no-string-literal": false,
+        "jsx-no-lambda": false,
+        "no-console": false,
+        "jsx-no-multiline-js": false
+    },
+    "rulesDirectory": [],
+	"parser": "typescript-eslint-parser",
+	"linterOptions": {
+        "exclude": [
+            "config/**/*.js",
+            "node_modules/**/*.ts"
+       ]
+   }
+}
