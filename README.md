@@ -1,4 +1,5 @@
-### `yarn start`
+Este é o projeto de desafio Salesfy, etapa Backend.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser. 
+Para instalação, rodar o comando: $ npm install
+
+Para rodar o projeto, execute: $ yarn start
