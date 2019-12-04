@@ -1,4 +1,4 @@
-Este é o projeto de desafio Salesfy, etapa Backend.
+Este é o projeto de desafio Salesfy, etapa Frontend.
 
 Para instalação, rodar o comando: $ npm install
 
