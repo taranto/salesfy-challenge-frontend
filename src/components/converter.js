@@ -6,13 +6,13 @@ import { Divider } from 'antd';
 import { Tag } from 'antd';
 import { connect } from 'react-redux';
 import converter from 'number-to-words';
+import { itensLength } from '../store/converter-reducer/selectors';
 const { Search } = Input;
 
 
-
 function Converter(props) {
-    const { inputItens: { arrayValues } } = props
-    console.log(props)
+    const { inputItens: { lastValue, arrayValues = [] } } = props
+    const { itensLength } = props
     function dispatchProducts(data) {
         const { dispatch } = props;
         dispatch({
@@ -29,22 +29,23 @@ function Converter(props) {
                 size="large"
                 onSearch={value => dispatchProducts(value)}
             />
-            <Tag className="tag" color="purple">{arrayValues}</Tag>
+            <Tag className="tag" color="purple">{lastValue}</Tag>
             <div className="historyBox">
                 <div className="boxTitle">
-                    <div>There’s twinty ejkaocijiaec lajierv alcinie nenu numbers translated</div>
+                    <div>There’s {itensLength} numbers translated</div>
                 </div>
                 <Divider />
-                <div> 5: at{`${new Date()}`} FIVE</div>
-                <div> 5: at{`${new Date()}`} FIVE</div>
-                <div> 5: at{`${new Date()}`} FIVE</div>
+                {arrayValues.map((number, ind) => {
+                    return <div key={ind}>{number}</div>
+                })}
             </div>
         </Container>
     );
 }
 
 const mapStateToProps = state => ({
-    inputItens: state.inputItens
+    inputItens: state.inputItens,
+    itensLength: itensLength(state)
 });
 
 export default connect(mapStateToProps)(Converter);

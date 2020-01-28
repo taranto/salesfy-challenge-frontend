@@ -1,8 +1,8 @@
 import { createSelector } from 'reselect';
 
-const selectItens = state => state.itens;
+const selectInputItens = state => state.inputItens;
 
-export const selectCurrentItens = createSelector(
-    [selectItens],
-    (itens) => itens.currentItens
+export const itensLength = createSelector(
+    [selectInputItens],
+    (itens) => itens.arrayValues.length
 )
