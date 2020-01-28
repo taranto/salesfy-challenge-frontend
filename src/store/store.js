@@ -10,10 +10,10 @@ const sagaMiddleware = createSagaMiddleware();
 
 const middlewares = [logger, sagaMiddleware];
 
-const store = createStore(rootReducer, applyMiddleware(...middlewares));
+export const store = createStore(rootReducer, applyMiddleware(...middlewares));
 
 export const persistor = persistStore(store);
 
-sagaMiddleware.run(convertNumber)
+sagaMiddleware.run(convertNumber);
 
 export default { store, persistor };
