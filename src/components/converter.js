@@ -5,20 +5,19 @@ import { Container } from './styles';
 import { Divider } from 'antd';
 import { Tag } from 'antd';
 import { connect } from 'react-redux';
-import converter from 'number-to-words';
-import { itensLength } from '../store/converter-reducer/selectors';
-const { Search } = Input;
+import { itensLength, convertLastValue, historyBoxArray } from '../store/converter-reducer/selectors';
+import setInputValue from '../store/converter-reducer/actions';
+
+
 
 
 function Converter(props) {
-    const { inputItens: { lastValue, arrayValues = [] } } = props
-    const { itensLength } = props
+    const { itensLength, convertedLastValue, historyBoxArray } = props
+    const { Search } = Input;
+
     function dispatchProducts(data) {
         const { dispatch } = props;
-        dispatch({
-            type: 'SET_BUTTON_OUTPUT',
-            payload: [data]
-        })
+        dispatch(setInputValue(data))
     }
     return (
         <Container>
@@ -29,14 +28,14 @@ function Converter(props) {
                 size="large"
                 onSearch={value => dispatchProducts(value)}
             />
-            <Tag className="tag" color="purple">{lastValue}</Tag>
+            <Tag className="tag" color="purple">{convertedLastValue}</Tag>
             <div className="historyBox">
                 <div className="boxTitle">
                     <div>There’s {itensLength} numbers translated</div>
                 </div>
                 <Divider />
-                {arrayValues.map((number, ind) => {
-                    return <div key={ind}>{number}</div>
+                {historyBoxArray.map((item, ind) => {
+                    return <div key={ind}>{item}</div>
                 })}
             </div>
         </Container>
@@ -45,7 +44,10 @@ function Converter(props) {
 
 const mapStateToProps = state => ({
     inputItens: state.inputItens,
-    itensLength: itensLength(state)
+    itensLength: itensLength(state),
+    convertedLastValue: convertLastValue(state),
+    historyBoxArray: historyBoxArray(state),
+
 });
 
 export default connect(mapStateToProps)(Converter);

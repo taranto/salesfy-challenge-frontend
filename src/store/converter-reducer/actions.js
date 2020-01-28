@@ -1,10 +1,9 @@
 import converterActionTypes from './types';
 
 const setInputValue = function (inputValue) {
-    console.log(inputValue)
     return {
-        type: converterActionTypes.SET_CURRENT_USER,
-        payload: inputValue
+        type: converterActionTypes.SET_BUTTON_OUTPUT,
+        payload: [inputValue]
     }
 };
 
