@@ -1,13 +1,10 @@
-import { Form, Icon, Input, Button, InputNumber } from 'antd';
+import { Form, Button, InputNumber } from 'antd';
 import React from 'react';
 import { InputStyle } from './styles';
 import { connect } from 'react-redux';
 import setInputValue from '../store/converter-reducer/actions';
 
 
-function hasErrors(fieldsError) {
-    return Object.keys(fieldsError).some(field => fieldsError[field]);
-}
 
 class HorizontalLoginForm extends React.Component {
     componentDidMount() {

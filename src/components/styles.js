@@ -5,6 +5,13 @@ export const HeaderStyle = styled.div`
     width: 100vw;
     height: 10vh;
     background:white;
+    display:flex;
+    justify-content:center;
+    img {
+        max-width:100%;
+        max-height:100%;
+        padding: 20px 0 20px 0
+    }
 `
 
 export const InputStyle = styled.div`
@@ -38,7 +45,7 @@ export const InputStyle = styled.div`
 `
 export const Container = styled.div`
     @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap');
-    margin-top: 5rem;
+    margin-top: 2rem;
     display: flex;
     flex-direction: column;
     justify-content:center;
@@ -56,7 +63,6 @@ export const Container = styled.div`
     }
 
     .historyBox {
-
         margin:2em;
         padding: 2em;
         border-radius: 2em;
@@ -71,7 +77,16 @@ export const Container = styled.div`
 
     
     .convertedNumbers {
+        display:flex;
+        flex-direction:column;
         font-size:12px;
         font-family:'Source Code Pro', monospace;
     }
+
+
+    .true{
+        font-weight: 900;
+        color: #8A05BE
+    }
 `
+

@@ -1,22 +1,22 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import { Container } from './styles';
-import { Divider, Form, Input, Tag } from 'antd';
+import { Divider, Button } from 'antd';
 import { connect } from 'react-redux';
-import { itensLength, convertLastValue, historyBoxArray } from '../store/converter-reducer/selectors';
+import { itensLength, convertLastValue, historyBoxArray, lengthFeature } from '../store/converter-reducer/selectors';
 import WrappedHorizontalLoginForm from './form';
 
 
 
 function Converter(props) {
-    const { itensLength, convertedLastValue, historyBoxArray } = props
-
+    const { itensLength, convertedLastValue, historyBoxArray, lengthFeature } = props
+    console.log(historyBoxArray)
     return (
         <>
             <Container>
                 <WrappedHorizontalLoginForm />
                 {/* criar validação no input */}
-                <div className="tag" placeholder='waiting...' color="purple">
+                <div className="tag" onClick={() => console.log(lengthFeature)} placeholder='waiting...' color="purple">
                     <div>
                         <span>last number converted: </span>
                         <strong>{convertedLastValue}</strong>
@@ -24,15 +24,21 @@ function Converter(props) {
                 </div>
                 <div className="historyBox">
                     <div className="boxTitle">
-                        <div>There’s {itensLength} numbers translated</div>
+                        <div className={JSON.stringify(lengthFeature)}>There’s {itensLength} numbers translated</div>
                     </div>
                     <Divider />
                     <div className='convertedNumbers'>
-                        {historyBoxArray.map((item, ind) => {
-                            return <div key={ind}>{item}</div>
+                        {Object.keys(historyBoxArray).map((item, ind) => {
+                            if (itensLength === Object.values(historyBoxArray)[ind]) {
+                                return <span className='true' key={ind}>{item}: {Object.values(historyBoxArray)[ind]}</span>
+                            } else {
+                                return <span className='false' key={ind}>{item}: {Object.values(historyBoxArray)[ind]}</span>
+                            }
                         })}
                     </div>
                 </div>
+                <Divider />
+                <Button onClick={() => { window.localStorage.clear(); window.location.reload(false) }}> Resetar historico </Button>
             </Container>
         </>
     );
@@ -43,6 +49,7 @@ const mapStateToProps = state => ({
     itensLength: itensLength(state),
     convertedLastValue: convertLastValue(state),
     historyBoxArray: historyBoxArray(state),
+    lengthFeature: lengthFeature(state)
 
 });
 

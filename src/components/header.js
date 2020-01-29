@@ -1,11 +1,11 @@
 import React from 'react';
-
 import { HeaderStyle } from './styles'
-
-// import { Container } from './styles';
+import logo from '../styles/assets/number.svg'
 
 export default function Header() {
     return (
-        <HeaderStyle />
+        <HeaderStyle>
+            <img alt="nulogo" src={logo} />
+        </HeaderStyle>
     );
 }
