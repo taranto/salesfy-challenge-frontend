@@ -22,7 +22,6 @@ function Converter(props) {
                             <strong >{convertedLastValue}</strong>
                         </div>
                 }
-
             </div>
             <div className="historyBox">
                 <div className="boxTitle">

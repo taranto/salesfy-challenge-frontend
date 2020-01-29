@@ -1,5 +1,5 @@
 {
-  "name": "y",
+  "name": "salesfy-challenge-frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -7,6 +7,7 @@
     "@types/react": "16.9.14",
     "@types/react-dom": "16.9.4",
     "antd": "^3.26.7",
+    "react-router-dom": "^5.1.2",
     "number-to-words": "^1.2.4",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
