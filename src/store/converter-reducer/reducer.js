@@ -11,7 +11,7 @@ const converterReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 lastValue: action.payload,
-                arrayValues: [...state.arrayValues, ...action.payload]
+                arrayValues: [action.payload, ...state.arrayValues]
             };
         default:
             return state;

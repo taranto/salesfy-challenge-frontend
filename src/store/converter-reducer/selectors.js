@@ -22,11 +22,10 @@ export const lengthFeature = createSelector(
 
 
 export const historyBoxArray = createSelector(
-    [selectArrayValues],
-    (itens) => itens.reduce((total, value) => ({
-        ...total,
-        [value]: converter.toWords(value).toUpperCase()
-    }))
+    selectArrayValues,
+    (itens) => itens.map((value) => {
+        return `${value} : ${converter.toWords(value).toUpperCase()}`
+    })
 )
 
 export const convertLastValue = createSelector(

@@ -6,21 +6,12 @@ import setInputValue from '../store/converter-reducer/actions';
 
 
 
-class HorizontalLoginForm extends React.Component {
+class DispatchNumberForm extends React.Component {
     componentDidMount() {
         // To disable submit button at the beginning.
         this.props.form.validateFields();
+
     }
-
-    handleSubmit = e => {
-        e.preventDefault();
-        this.props.form.validateFields((err, values) => {
-            if (!err) {
-                console.log('Received values of form: ', values);
-            }
-        });
-    };
-
     dispatchNumber(integer) {
         const { dispatch } = this.props;
         dispatch(setInputValue(integer))
@@ -31,15 +22,24 @@ class HorizontalLoginForm extends React.Component {
             'number'
         );
         this.dispatchNumber(inputValue)
-        this.props.form.resetFields()
     };
+
+    handleSubmit = e => {
+        e.preventDefault();
+        this.props.form.validateFields((err, values) => {
+            if (!err) {
+                console.log('Received values of form: ', values);
+            }
+        });
+        this.handleInputValue()
+        this.props.form.resetFields();
+
+    };
+
 
 
     render() {
         const { getFieldDecorator } = this.props.form;
-
-        // Only show error after a field is touched.
-
         return (
             <InputStyle>
                 <Form onSubmit={this.handleSubmit}>
@@ -58,7 +58,7 @@ class HorizontalLoginForm extends React.Component {
                         )}
                     </Form.Item>
                     <Form.Item>
-                        <Button onClick={this.handleInputValue} type="primary" htmlType="submit">
+                        <Button type="primary" htmlType="submit">
                             Converter!
                         </Button>
                     </Form.Item>
@@ -68,8 +68,8 @@ class HorizontalLoginForm extends React.Component {
     }
 }
 
-const WrappedHorizontalLoginForm = Form.create({ name: 'horizontal_login' })(HorizontalLoginForm);
+const SubmitForm = Form.create({ name: 'SubmitForm' })(DispatchNumberForm);
 
 
 
-export default connect()(WrappedHorizontalLoginForm)
+export default connect()(SubmitForm)
