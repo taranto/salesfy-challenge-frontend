@@ -15,10 +15,14 @@ function Converter(props) {
         <Container>
             <SubmitForm />
             <div className="tag" onClick={() => console.log(inputItens)} placeholder='waiting...' color="purple">
-                <div>
-                    <span>last number converted: </span>
-                    <strong >{convertedLastValue}</strong>
-                </div>
+                {
+                    convertedLastValue === 'ZERO' ? 'Nenhum número convertido ainda :(' :
+                        <div>
+                            <span>last number converted: </span>
+                            <strong >{convertedLastValue}</strong>
+                        </div>
+                }
+
             </div>
             <div className="historyBox">
                 <div className="boxTitle">

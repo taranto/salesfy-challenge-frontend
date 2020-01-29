@@ -8,8 +8,6 @@ import setInputValue from '../store/converter-reducer/actions';
 
 class DispatchNumberForm extends React.Component {
     componentDidMount() {
-        // To disable submit button at the beginning.
-        this.props.form.validateFields();
 
     }
     dispatchNumber(integer) {
@@ -25,14 +23,17 @@ class DispatchNumberForm extends React.Component {
     };
 
     handleSubmit = e => {
-        e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 console.log('Received values of form: ', values);
             }
         });
-        this.handleInputValue()
-        this.props.form.resetFields();
+        if (this.props.form.getFieldValue('number') === undefined) {
+            return alert('vazio não é numero')
+        } else {
+            this.handleInputValue()
+            this.props.form.resetFields()
+        }
 
     };
 
@@ -46,12 +47,13 @@ class DispatchNumberForm extends React.Component {
                     <Form.Item>
                         {getFieldDecorator('number', {
                             rules: [{
+                                required: true,
                                 type: 'number',
                                 message: 'Precisa ser um número inteiro'
                             }],
                         })(
                             <InputNumber
-                                onChange={() => console.log(this.props)}
+                                onChange={(value) => this.props.form.setFieldsValue({ number: value })}
                                 className='inputNumber'
                                 placeholder="Me traga um numero"
                             />,
