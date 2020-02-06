@@ -8,8 +8,8 @@ import setInputValue from '../store/converter-reducer/actions';
 
 class DispatchNumberForm extends React.Component {
     componentDidMount() {
-
     }
+
     dispatchNumber(integer) {
         const { dispatch } = this.props;
         dispatch(setInputValue(integer))
@@ -19,7 +19,14 @@ class DispatchNumberForm extends React.Component {
         const inputValue = this.props.form.getFieldValue(
             'number'
         );
-        this.dispatchNumber(inputValue)
+
+        console.log(typeof inputValue)
+
+        if(typeof inputValue === ('string' || 'undefined') ) {
+            alert('preencha com algum número')
+        } else { 
+            typeof inputValue === 'number' ? this.dispatchNumber(inputValue) : alert('precisa ser um número')
+        }
     };
 
     handleSubmit = e => {
@@ -29,7 +36,7 @@ class DispatchNumberForm extends React.Component {
             }
         });
         if (this.props.form.getFieldValue('number') === undefined) {
-            return alert('vazio não é numero')
+            return alert('preencha com um número')
         } else {
             this.handleInputValue()
             this.props.form.resetFields()
